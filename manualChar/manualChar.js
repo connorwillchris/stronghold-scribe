@@ -7,7 +7,8 @@ let jRandomNameLen;
 function getRandomNum(m) {
     return Math.floor(Math.random() * m);
 }
-fetch('../rpg/5e/randomNames.json')
+// get the JSON at the document root
+fetch('/rpg/5e/randomNames.json')
     .then(response => response.json())
     .then(json => {
     jRandomName = json;

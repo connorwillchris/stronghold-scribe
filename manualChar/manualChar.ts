@@ -4,14 +4,15 @@ const randomNameBtn = <HTMLButtonElement>document.getElementById('randomNameBtn'
 const charNameTxt = <HTMLInputElement>document.getElementById('charNameTxt');
 
 // get the json file
-let jRandomName;
-let jRandomNameLen;
+let jRandomName: any;
+let jRandomNameLen: any;
 
 function getRandomNum(m: number): number {
     return Math.floor(Math.random() * m);
 }
 
-fetch('../rpg/5e/randomNames.json')
+// get the JSON at the document root
+fetch('/rpg/5e/randomNames.json')
     .then(response => response.json())
     .then(json => {
         jRandomName = json;
@@ -19,7 +20,6 @@ fetch('../rpg/5e/randomNames.json')
     });
 
 // get a bunch of random names
-
 randomNameBtn.onclick = () => {
     let name = jRandomName[getRandomNum(jRandomNameLen)];
     charNameTxt.value = `${name}`;
