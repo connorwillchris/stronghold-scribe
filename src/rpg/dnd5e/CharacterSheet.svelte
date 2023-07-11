@@ -1,22 +1,21 @@
 <script lang="ts">
-    //import Character from '$lib/Character.svelte';
     import Stat from '$lib/Stat.svelte';
     import Name from '$lib/Name.svelte';
     import { diceRoll } from '$lib/randomNum';
-
+    // JSON imports
     import randomNames from '../dnd5e/data/randomNames.json';
 
-    let _name = "";
+    // variables and declarations
+    let cName = "";
     let stats = [0, 0, 0, 0, 0, 0];
     const statNames = ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma'];
 
-    // random name generator
+    // generate a random name from the list
     function randomName() {
-        let len = randomNames.randomNames.length;
-        _name = randomNames.randomNames[Math.floor(Math.random()*len)];
+        cName = randomNames.randomNames[Math.floor(Math.random()*randomNames.randomNames.length)];
     }
 
-    // random stats function
+    // generate random stats
     function randomStats() {
         for(let i = 0; i < statNames.length; i++) {
             stats[i] = diceRoll(3, 6);
@@ -27,12 +26,12 @@
 
 <h1>D&D Character</h1>
 
-<!-- NAME HERE -->
+<!-- NAME -->
 <h2>Basics</h2>
-<Name cName={_name} />
+<Name cName={cName} />
 <button on:click={randomName}>Random Name</button>
 
-<!-- STATS HERE -->
+<!-- STATS -->
 <h2>Stats</h2>
 <button on:click={randomStats}>Random Stats</button>
 <br>
@@ -40,3 +39,4 @@
     <Stat sName={name} defaultValue={stats[i]} />
 {/each}
 
+<p>version 0.1.0-prealpha</p>
