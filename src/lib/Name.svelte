@@ -2,4 +2,6 @@
     export let cName = 'default name';
 </script>
 
-<input type="text" value={cName}>
+<label>Name
+    <input type="text" value={cName}>
+</label>
